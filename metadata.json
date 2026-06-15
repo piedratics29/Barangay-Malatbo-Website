@@ -1,0 +1,6 @@
+{
+  "name": "Barangay Malatbo Official Website",
+  "description": "Progressive, high-tech, and official digital portal for Barangay Malatbo, Ginatilan, Cebu, Philippines, with transparent services, news, developments, and community engagement.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

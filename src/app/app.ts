@@ -8,14 +8,14 @@ import {
   computed,
   PLATFORM_ID,
 } from '@angular/core';
-import {isPlatformBrowser, CommonModule} from '@angular/common';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 
 export interface Official {
   id: number;
@@ -122,108 +122,108 @@ export class App implements OnInit {
   brokenImages = signal<Record<string, boolean>>({});
 
   // Assets mapped to attachments
-  logoUrl = 'assets/.aistudio/input_file_8.png';
+  logoUrl = 'LOGO.png';
 
   officials: Official[] = [
     {
       id: 0,
-      name: 'Hon. Raul B. Singco',
+      name: 'Hon. Roberto A. Esmedina',
       role: 'Punong Barangay (Barangay Captain)',
       committee: 'Committee Chairman on General Services, Peace & Order, and Executive Administration.',
-      photoUrl: 'assets/.aistudio/input_file_0.png',
+      photoUrl: 'Captain.png',
       fallbackColor: 'bg-indigo-900 text-yellow-400',
-      initials: 'RS',
-      email: 'cap.raulsingco@malatbo.gov.ph'
+      initials: 'RE',
+      email: 'cap.robertesmedina@malatbo.gov.ph'
     },
     {
       id: 1,
-      name: 'Hon. Glenn T. Abad',
+      name: 'Hon. Glendale Rodriguez',
       role: 'Barangay Kagawad (Councilor)',
       committee: 'Chairman: Committee on Finance, Appropriations & Budget.',
-      photoUrl: 'assets/.aistudio/input_file_1.png',
+      photoUrl: 'kagawad1.png',
       fallbackColor: 'bg-emerald-800 text-teal-100',
-      initials: 'GA',
-      email: 'kag.glennabad@malatbo.gov.ph'
+      initials: 'GR',
+      email: 'kag.glendalerodriguez@malatbo.gov.ph'
     },
     {
       id: 2,
-      name: 'Hon. Sergio C. Tocong',
+      name: 'Hon. Jelson Cedeño',
       role: 'Barangay Kagawad (Councilor)',
       committee: 'Chairman: Committee on Infrastructure, Public Works & Utilities.',
-      photoUrl: 'assets/.aistudio/input_file_2.png',
+      photoUrl: 'kagawad2.png',
       fallbackColor: 'bg-blue-800 text-blue-100',
-      initials: 'ST',
-      email: 'kag.sergiotocong@malatbo.gov.ph'
+      initials: 'JC',
+      email: 'kag.jelsoncedeño@malatbo.gov.ph'
     },
     {
       id: 3,
-      name: 'Hon. Maria Elena S. Gomez',
+      name: 'Hon. Pedrita Vilar',
       role: 'Barangay Kagawad (Councilor)',
       committee: 'Chairwoman: Committee on Health, Sanitation & Social Welfare.',
-      photoUrl: 'assets/.aistudio/input_file_3.png',
+      photoUrl: 'kagawad3.png',
       fallbackColor: 'bg-rose-800 text-rose-100',
-      initials: 'EG',
-      email: 'kag.elenagomez@malatbo.gov.ph'
+      initials: 'PV',
+      email: 'kag.pedritavilar@malatbo.gov.ph'
     },
     {
       id: 4,
-      name: 'Hon. Jocelyn R. Carungay',
+      name: 'Hon. Anecita Montecalbo',
       role: 'Barangay Kagawad (Councilor)',
       committee: 'Chairwoman: Committee on Education, Culture, Women & Family Affairs.',
-      photoUrl: 'assets/.aistudio/input_file_4.png',
+      photoUrl: 'kagawad4.png',
       fallbackColor: 'bg-purple-800 text-purple-100',
-      initials: 'JC',
-      email: 'kag.jocelyncarungay@malatbo.gov.ph'
+      initials: 'AM',
+      email: 'kag.anecitamontecalbo@malatbo.gov.ph'
     },
     {
       id: 5,
-      name: 'Hon. Wilfredo D. Flores',
+      name: 'Hon. Eddie Montecalvo',
       role: 'Barangay Kagawad (Councilor)',
       committee: 'Chairman: Committee on Agriculture, Livelihood, & Cooperatives.',
-      photoUrl: 'assets/.aistudio/input_file_5.png',
+      photoUrl: 'kagawad5.png',
       fallbackColor: 'bg-cyan-800 text-cyan-100',
-      initials: 'WF',
-      email: 'kag.wilfredoflores@malatbo.gov.ph'
+      initials: 'EM',
+      email: 'kag.eddiemontecalvo@malatbo.gov.ph'
     },
     {
       id: 6,
-      name: 'Hon. Roberto L. Cabal',
+      name: 'Hon. Cesar Singco',
       role: 'Barangay Kagawad (Councilor)',
       committee: 'Chairman: Committee on Environmental Protection & Climate Action.',
-      photoUrl: '',
+      photoUrl: 'kagawad6.png',
       fallbackColor: 'bg-amber-800 text-amber-100',
-      initials: 'RC',
-      email: 'kag.robertocabal@malatbo.gov.ph'
+      initials: 'CS',
+      email: 'kag.cesarsingco@malatbo.gov.ph'
     },
     {
       id: 7,
-      name: 'Hon. Jerry O. Melendres',
+      name: 'Hon. Noel Sariño',
       role: 'Barangay Kagawad (Councilor)',
       committee: 'Chairman: Committee on Rules, Privileges, Laws, and Human Rights.',
-      photoUrl: '',
+      photoUrl: 'kagawad7.png',
       fallbackColor: 'bg-slate-800 text-slate-100',
-      initials: 'JM',
-      email: 'kag.jerrymelendres@malatbo.gov.ph'
+      initials: 'NS',
+      email: 'kag.noelsariño@malatbo.gov.ph'
     },
     {
       id: 8,
-      name: 'Hon. Katrina S. Singco',
+      name: 'Hon. Niño Acosta',
       role: 'SK Chairperson (Youth Representative)',
-      committee: 'Chairwoman: Committee on Youth & Sports Development; Advocator for digital literacy.',
-      photoUrl: 'assets/.aistudio/input_file_6.png',
+      committee: 'Chairman: Committee on Youth & Sports Development; Advocator for digital literacy.',
+      photoUrl: 'sk chairman.png',
       fallbackColor: 'bg-pink-800 text-pink-100',
-      initials: 'KS',
-      email: 'sk.katrinasingco@malatbo.gov.ph'
+      initials: 'NA',
+      email: 'sk.ninoacosta@malatbo.gov.ph'
     },
     {
       id: 9,
-      name: 'Mr. Teodoro P. Melendres',
+      name: 'Ms. Jezamine Magalso',
       role: 'Barangay Secretary',
       committee: 'Head of Administrative Services, Civic Registry, and Document Archival Operations.',
-      photoUrl: 'assets/.aistudio/input_file_7.png',
+      photoUrl: 'secretary.png',
       fallbackColor: 'bg-teal-900 text-teal-200',
-      initials: 'TM',
-      email: 'sec.teodoromelendres@malatbo.gov.ph'
+      initials: 'JM',
+      email: 'sec.jezaminemagalso@malatbo.gov.ph'
     }
   ];
 
@@ -420,7 +420,7 @@ export class App implements OnInit {
   // Active navigation highlight detection
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    if (!this.isBrowser()) return;
+    if (!this.isBrowser()) { return; }
 
     const scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
     this.scrolledDown.set(scrollPos > 60);
@@ -441,12 +441,12 @@ export class App implements OnInit {
   }
 
   scrollToSection(secId: string) {
-    if (!this.isBrowser()) return;
+    if (!this.isBrowser()) { return; }
     const el = document.getElementById(secId);
     if (el) {
       const yOffset = -80; // offset navbar
       const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
-      window.scrollTo({top: y, behavior: 'smooth'});
+      window.scrollTo({ top: y, behavior: 'smooth' });
       this.activeSection.set(secId);
     }
   }
@@ -497,8 +497,8 @@ export class App implements OnInit {
     // Simulate backend processing
     setTimeout(() => {
       const formVals = this.certificateForm.value;
-      const refId = 'BM-' + new Date().getFullYear() + '-' + Math.floor(100000 + Math.random() * 900000);
-      
+      const refId = `BM-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
+
       const prices: Record<string, string> = {
         'Barangay Clearance': '₱50.00',
         'Certificate of Indigency': 'Free (Civic Welfare)',
@@ -511,7 +511,7 @@ export class App implements OnInit {
         day: 'numeric',
         year: 'numeric'
       });
-      
+
       // Pickup dates are typically 1-2 business days
       const pickupDateObj = new Date();
       pickupDateObj.setDate(pickupDateObj.getDate() + 1);
@@ -529,7 +529,7 @@ export class App implements OnInit {
         purpose: formVals.purpose,
         fee: prices[formVals.serviceType] || '₱0.00',
         dateRequested: requestedDate,
-        pickupDate: pickupDate,
+        pickupDate,
         status: 'Pending Verification'
       };
 
@@ -564,7 +564,7 @@ export class App implements OnInit {
     });
 
     const newLog = {
-      id: 'REF-' + Math.floor(10000 + Math.random() * 90000),
+      id: `REF-${Math.floor(10000 + Math.random() * 90000)}`,
       name: val.name,
       subject: val.subject,
       message: val.message,
@@ -597,7 +597,7 @@ export class App implements OnInit {
   }
 
   printReceipt() {
-    if (!this.isBrowser()) return;
+    if (!this.isBrowser()) { return; }
     window.print();
   }
 }

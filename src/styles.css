@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sytem-ui, sans-serif;
-  --font-display: "Outfit", sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sytem-ui, sans-serif;
+  --font-display: 'Outfit', sans-serif;
 }
 
 /* Custom Scrollbar */
@@ -26,6 +26,46 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+  background: #020617;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+button,
+span,
+label {
+  overflow-wrap: anywhere;
+}
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
 }
 
 /* Glassmorphic Utilities */
@@ -52,3 +92,460 @@ html {
   box-shadow: 0 0 20px rgba(225, 29, 72, 0.3);
 }
 
+/* Motion layer */
+app-root {
+  display: block;
+  --cursor-x: 50vw;
+  --cursor-y: 40vh;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+app-root::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      520px circle at var(--cursor-x) var(--cursor-y),
+      rgba(245, 158, 11, 0.12),
+      transparent 42%
+    ),
+    radial-gradient(
+      700px circle at calc(var(--cursor-x) + 8rem) calc(var(--cursor-y) + 5rem),
+      rgba(220, 38, 38, 0.08),
+      transparent 48%
+    );
+  mix-blend-mode: screen;
+  opacity: 0.72;
+  transition: opacity 300ms ease;
+}
+
+.civic-status-card {
+  position: relative;
+  z-index: 25;
+  overflow: hidden;
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.86)),
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.16), transparent 50%);
+  color: #f8fafc;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.civic-status-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transform: translateX(-100%);
+  animation: status-sheen 7s ease-in-out infinite;
+}
+
+.civic-status-card p:first-child {
+  color: #cbd5e1;
+}
+
+.civic-status-card p:last-child {
+  color: #f8fafc;
+}
+
+.civic-status-card > .hidden {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.back-to-top-button {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 45;
+  width: 3.4rem;
+  height: 3.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 20%, rgba(255, 255, 255, 0.28), transparent 26%),
+    linear-gradient(135deg, #dc2626, #f59e0b);
+  color: white;
+  box-shadow:
+    0 18px 42px rgba(220, 38, 38, 0.28),
+    0 0 0 8px rgba(245, 158, 11, 0.08);
+  overflow: hidden;
+  animation: back-to-top-enter 320ms var(--motion-ease) both;
+}
+
+.back-to-top-button mat-icon {
+  position: relative;
+  z-index: 2;
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.back-to-top-ring {
+  position: absolute;
+  inset: 0.35rem;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  animation: back-to-top-pulse 2.4s ease-in-out infinite;
+}
+
+.back-to-top-button:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow:
+    0 24px 55px rgba(220, 38, 38, 0.34),
+    0 0 0 10px rgba(245, 158, 11, 0.12);
+}
+
+main,
+footer {
+  position: relative;
+}
+
+header,
+main,
+footer {
+  z-index: 2;
+}
+
+#home::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background:
+    conic-gradient(
+      from 120deg at 50% 50%,
+      transparent 0deg,
+      rgba(245, 158, 11, 0.18) 55deg,
+      transparent 105deg,
+      rgba(220, 38, 38, 0.16) 185deg,
+      transparent 240deg
+    ),
+    radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.16), transparent 26%),
+    radial-gradient(circle at 82% 72%, rgba(34, 197, 94, 0.1), transparent 28%);
+  filter: blur(22px);
+  opacity: 0.55;
+  animation: ambient-drift 22s var(--motion-ease) infinite alternate;
+}
+
+#home::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(115deg, transparent 0 42%, rgba(255, 255, 255, 0.05) 48%, transparent 55%),
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.1), transparent 24%);
+  background-size:
+    220% 220%,
+    100% 100%;
+  opacity: 0.45;
+  animation: hero-sheen 9s ease-in-out infinite;
+}
+
+#home > .relative.z-10 {
+  animation: hero-arrive 900ms var(--motion-ease) both;
+}
+
+#home .rounded-full:has(img),
+#home .rounded-full:has(svg) {
+  animation: seal-float 5.5s ease-in-out infinite;
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0) scale(0.985);
+  filter: blur(10px);
+  transition:
+    opacity 720ms var(--motion-ease) var(--reveal-delay, 0ms),
+    transform 720ms var(--motion-ease) var(--reveal-delay, 0ms),
+    filter 720ms var(--motion-ease) var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  transition:
+    transform 220ms var(--motion-ease),
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease,
+    color 220ms ease,
+    opacity 220ms ease;
+}
+
+button:not(:disabled):active,
+a:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+button:not(:disabled):focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(245, 158, 11, 0.75);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.12);
+}
+
+section [class*='rounded-2xl'],
+section [class*='rounded-xl'] {
+  backface-visibility: hidden;
+}
+
+section button[class*='rounded-2xl'],
+section button[class*='rounded-xl'],
+section .grid > div[class*='rounded-2xl'],
+section .grid > div[class*='rounded-xl'] {
+  position: relative;
+  isolation: isolate;
+}
+
+section button[class*='rounded-2xl']::before,
+section button[class*='rounded-xl']::before,
+section .grid > div[class*='rounded-2xl']::before,
+section .grid > div[class*='rounded-xl']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.2),
+    transparent 38%,
+    rgba(220, 38, 38, 0.16)
+  );
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+section button[class*='rounded-2xl']:hover,
+section button[class*='rounded-xl']:hover,
+section .grid > div[class*='rounded-2xl']:hover,
+section .grid > div[class*='rounded-xl']:hover {
+  box-shadow:
+    0 22px 55px rgba(2, 6, 23, 0.36),
+    0 0 0 1px rgba(245, 158, 11, 0.08);
+}
+
+section button[class*='rounded-2xl']:hover::before,
+section button[class*='rounded-xl']:hover::before,
+section .grid > div[class*='rounded-2xl']:hover::before,
+section .grid > div[class*='rounded-xl']:hover::before {
+  opacity: 1;
+}
+
+.animate-scale-in {
+  animation: modal-pop 360ms var(--motion-ease) both;
+}
+
+.animate-fade-in {
+  animation: soft-fade-up 420ms var(--motion-ease) both;
+}
+
+.fixed.inset-0 {
+  animation: backdrop-fade 220ms ease both;
+}
+
+mat-icon {
+  transition:
+    transform 220ms var(--motion-ease),
+    color 220ms ease;
+}
+
+button:hover mat-icon {
+  transform: translateY(-1px) scale(1.05);
+}
+
+@media (hover: none) {
+  #tourism .group p,
+  #tourism .group span:last-child {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  app-root::before {
+    opacity: 0.4;
+  }
+
+  header {
+    max-height: 100svh;
+    overflow-y: auto;
+  }
+
+  section {
+    scroll-margin-top: 92px;
+  }
+
+  .glass-panel {
+    border-radius: 1rem;
+  }
+
+  mat-icon {
+    flex-shrink: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  section {
+    scroll-margin-top: 104px;
+  }
+
+  #services .lg\:col-span-5,
+  #contact .lg\:col-span-5 {
+    max-width: 44rem;
+    margin-inline: auto;
+    width: 100%;
+  }
+}
+
+@keyframes ambient-drift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) rotate(0deg) scale(1);
+  }
+  100% {
+    transform: translate3d(2%, 1%, 0) rotate(10deg) scale(1.08);
+  }
+}
+
+@keyframes hero-sheen {
+  0%,
+  100% {
+    background-position:
+      180% 0,
+      center;
+  }
+  45% {
+    background-position:
+      -60% 0,
+      center;
+  }
+}
+
+@keyframes hero-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes seal-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes status-sheen {
+  0%,
+  72%,
+  100% {
+    transform: translateX(-110%);
+  }
+  86% {
+    transform: translateX(110%);
+  }
+}
+
+@keyframes back-to-top-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes back-to-top-pulse {
+  0%,
+  100% {
+    opacity: 0.62;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.14);
+  }
+}
+
+@keyframes modal-pop {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes soft-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes backdrop-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  app-root::before {
+    display: none;
+  }
+}

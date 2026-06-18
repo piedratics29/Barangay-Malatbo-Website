@@ -81,10 +81,12 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   private host: ElementRef<HTMLElement> = inject(ElementRef);
   private revealObserver?: IntersectionObserver;
   private countUpAnimation?: number;
+  private lastScrollY = 0;
 
   // Core visual states
   isBrowser = signal(false);
   scrolledDown = signal(false);
+  headerSticky = signal(false);
   activeSection = signal('home');
   mobileMenuOpen = signal(false);
 
@@ -435,6 +437,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
+    this.lastScrollY = window.scrollY || document.documentElement.scrollTop || 0;
     window.setTimeout(() => this.prepareScrollReveals());
   }
 
@@ -485,7 +488,21 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     }
 
     const scrollPos = window.scrollY || document.documentElement.scrollTop || 0;
+    const scrollDelta = scrollPos - this.lastScrollY;
+    const isScrollingDown = scrollDelta > 4;
+    const isScrollingUp = scrollDelta < -12;
+
     this.scrolledDown.set(scrollPos > 60);
+
+    if (scrollPos <= 8) {
+      this.headerSticky.set(false);
+    } else if (isScrollingDown) {
+      this.headerSticky.set(scrollPos > 16);
+    } else if (isScrollingUp) {
+      this.headerSticky.set(false);
+    }
+
+    this.lastScrollY = scrollPos;
 
     // Scan sections to find currently active section
     const secNames = [
@@ -533,6 +550,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     if (el) {
       const yOffset = -80; // offset navbar
       const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+      this.headerSticky.set(true);
       window.scrollTo({top: y, behavior: 'smooth'});
       this.activeSection.set(secId);
       this.mobileMenuOpen.set(false);
